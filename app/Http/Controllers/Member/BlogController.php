@@ -70,9 +70,14 @@ class BlogController extends Controller
         ]);
 
         if($request->hasFile('thumbnail')){
+            if(isset($post->thumbnail) && file_exists(public_path(getenv('CUSTOM_THUMBNAIL_LOCATION'))."/".
+            $post->thumbnail)){
+                unlink(public_path(getenv('CUSTOM_THUMBNAIL_LOCATION'))."/".
+                $post->thumbnail);
+            }
             $image = $request->file('thumbnail');
             $image_name = time()."_".$image->getClientOriginalName();
-            $destination_path = public_path('thumbnails');
+            $destination_path = public_path(getenv('CUSTOM_THUMBNAIL_LOCATION'));
             $image->move($destination_path, $image_name);
         }
 
