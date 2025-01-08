@@ -69,11 +69,20 @@ class BlogController extends Controller
             'thumbnail.max' => 'Ukuran maksimum untuk thumbnail adalah 10MB',
         ]);
 
+        if($request->hasFile('thumbnail')){
+            $image = $request->file('thumbnail');
+            $image_name = time()."_".$image->getClientOriginalName();
+            $destination_path = public_path('thumbnails');
+            $image->move($destination_path, $image_name);
+        }
+
+
         $data = [
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
             'status' => $request->status,
+            'thumbnail' => isset($image_name)?$image_name:$post->thumbnail
         ];
 
         Post::where('id', $post->id)->update($data);
