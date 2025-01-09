@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Gate;
 
 class BlogController extends Controller
 {
@@ -90,6 +91,7 @@ class BlogController extends Controller
      */
     public function edit(Post $post)
     {
+        Gate::authorize('edit', $post);
         $data = $post;
         return view('member.blogs.edit', compact('data'));
     }
@@ -142,6 +144,8 @@ class BlogController extends Controller
      */
     public function destroy(Post $post)
     {
+        Gate::authorize('delete', $post);
+        
         if(isset($post->thumbnail) && file_exists(public_path(getenv('CUSTOM_THUMBNAIL_LOCATION'))."/".
         $post->thumbnail)){
             unlink(public_path(getenv('CUSTOM_THUMBNAIL_LOCATION'))."/".
