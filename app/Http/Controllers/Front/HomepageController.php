@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 class HomepageController extends Controller
 {
     public function index(){
-        $Post = Post::where('status', 'publis')->orderBy('id', 'desc')->paginate(3);
+        $Post = Post::where('status', 'publish')->orderBy('id', 'desc')->paginate(3);
+        
         return view('components.front.home-page', compact('Post'));
     }
 }

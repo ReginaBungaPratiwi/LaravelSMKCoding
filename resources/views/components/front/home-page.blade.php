@@ -10,7 +10,7 @@
                     description="{{ $item->description }}"
                     data="{{ $item->created_at->isoFormat('dddd, D MMMM Y') }}"
                     user='{{ $item->user->name }}' 
-                    link="{{ route('blog-detail', ['slug' => $item->slug]) }}"
+                    link="{{ route('blogs-detail', ['slug' => $item->slug]) }}"
                 />
                 @endforeach
                 <!-- Pager-->
