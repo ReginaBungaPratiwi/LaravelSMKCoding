@@ -29,3 +29,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('/{slug}',[BlogDetailController::class, 'detail'])->name('blogs-detail');
