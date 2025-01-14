@@ -9,8 +9,17 @@ use Illuminate\Http\Request;
 class HomepageController extends Controller
 {
     public function index(){
-        $Post = Post::where('status', 'publish')->orderBy('id', 'desc')->paginate(3);
+        $lastData = $this->lastData();
         
-        return view('components.front.home-page', compact('Post'));
+        $Post = Post::where('status', 'publish')->where('id', '!=', $lastData->id)->orderBy('id', 'desc')
+        ->paginate(3);
+        
+        return view('components.front.home-page', compact('Post', 'lastData'));
     }
+
+    private function lastData(){
+        $Post = Post::where('status', 'publish')->orderBy('id', 'desc')->latest()->first();
+        return $Post;
+    }
+   
 }
