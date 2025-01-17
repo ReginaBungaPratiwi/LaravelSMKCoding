@@ -42,7 +42,7 @@
                                 <td class="border px-6 py-4 text-center text-sm hidden lg:table-cell"> {{ $item->status }}</td>
                                 <td class="border px-6 py-4 text-center">
                                     <a href='{{ route("member.blogs.edit",["post"=>$item->id]) }}' class="text-blue-600 hover:text-blue-400 px-2">edit</a>
-                                    <a href='' class="text-blue-600 hover:text-blue-400 px-2">lihat</a>
+                                    <a target='blank' href="{{ route('blogs-detail', ['slug'=>$item->slug]) }}" class="text-blue-600 hover:text-blue-400 px-2">lihat</a>
                                     <form class="inline" onsubmit="return confirm('Yakin akan menghapus data ini?')" 
                                     method="post" action="{{ route('member.blogs.destroy',
                                     ['post'=>$item->id]) }}">
