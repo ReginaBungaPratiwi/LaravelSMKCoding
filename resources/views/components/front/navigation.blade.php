@@ -1,7 +1,10 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{{url('/')}}">MakanYuk</a>
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo.png') }}" alt="MakanYuk Logo" width="100" height="100" class="me-2">
+                    MakanYuk
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
