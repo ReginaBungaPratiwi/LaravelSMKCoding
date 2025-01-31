@@ -40,6 +40,7 @@
                                 </td>
                                 <td class="border px-6 py-4 text-center text-gray-500 text-sm hidden lg:table-cell">{{ $item->created_at->isoFormat('dddd, D MMMM Y') }}</td>
                                 <td class="border px-6 py-4 text-center text-sm hidden lg:table-cell"> {{ $item->status }}</td>
+                                @if (auth()->user()->role == 1)
                                 <td class="border px-6 py-4 text-center">
                                     <a href='{{ route("member.blogs.edit",["post"=>$item->id]) }}' class="text-blue-600 hover:text-blue-400 px-2">edit</a>
                                     <a target='blank' href="{{ route('blogs-detail', ['slug'=>$item->slug]) }}" class="text-blue-600 hover:text-blue-400 px-2">lihat</a>
@@ -53,6 +54,15 @@
                                     </button>
                                     </form>
                                 </td>
+                                @endif
+
+
+                                @if (auth()->user()->role == 2)
+                                <td class="border px-6 py-4 text-center">
+                                 <a target='blank' href="{{ route('blogs-detail', ['slug'=>$item->slug]) }}" class="text-blue-600 hover:text-blue-400 px-2">lihat</a>
+                                </td>
+                                @endif
+
                             </tr>
                             @endforeach
                             
